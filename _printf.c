@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _printf - Custom printf implementation
  * @format: Format string
@@ -17,38 +16,38 @@ int _printf(const char *format, ...)
     {
         if (*format != '%')
         {
-            // Normal character, write it to stdout
-            write(1, format, 1);
+            /* Normal character, write it to stdout */
+            _putchar(*format);
             char_count++;
         }
         else
         {
-            // Handle conversion specifiers
-            format++; // Move past the '%'
+            /* Handle conversion specifiers */
+            format++; /* Move past the '%' */
             if (*format == 'c')
             {
-                // Character specifier
+                /* Character specifier */
                 char c = va_arg(args, int);
-                write(1, &c, 1);
+                _putchar(c);
                 char_count++;
             }
             else if (*format == 's')
             {
-                // String specifier
+                /* String specifier */
                 char *s = va_arg(args, char *);
                 if (s == NULL)
                     s = "(null)";
                 while (*s)
                 {
-                    write(1, s, 1);
+                    _putchar(*s);
                     s++;
                     char_count++;
                 }
             }
             else if (*format == '%')
             {
-                // Literal '%'
-                write(1, "%", 1);
+                /* Literal '%' */
+                _putchar('%');
                 char_count++;
             }
         }
